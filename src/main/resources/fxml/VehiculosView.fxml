@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane stylesheets="@../css/styles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="org.pedro.rentacar.controller.VehiculosController">
+
+    <!-- Barra superior -->
+    <top>
+        <HBox spacing="10" styleClass="header-bar">
+            <Label styleClass="header-title" text="Gestión de Vehículos" />
+        </HBox>
+    </top>
+
+    <!-- Centro: tabla de vehículos -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label styleClass="header-title" text="Listado de Vehículos" />
+                <TextField fx:id="tfBuscar" promptText="Buscar vehículo..." styleClass="search-field" />
+                <Button text="Buscar" onAction="#buscarVehiculos" styleClass="btn" />
+                <Button text="Mostrar Todos" onAction="#mostrarTodosVehiculos" styleClass="btn" />
+            </HBox>
+            <TableView fx:id="tablaVehiculos" maxWidth="-Infinity" prefHeight="400" styleClass="main-table">
+                <columns>
+                    <TableColumn fx:id="colId" prefWidth="50" text="ID" />
+                    <TableColumn fx:id="colMatricula" prefWidth="100" text="Matrícula" />
+                    <TableColumn fx:id="colMarca" prefWidth="100" text="Marca" />
+                    <TableColumn fx:id="colModelo" prefWidth="100" text="Modelo" />
+                    <TableColumn fx:id="colAnio" prefWidth="60" text="Año" />
+                    <TableColumn fx:id="colPrecioDia" prefWidth="100" text="Precio/Día" />
+                    <TableColumn fx:id="colEstado" prefWidth="100" text="Estado" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- Lado derecho: formulario y botones -->
+    <right>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED">
+            <VBox prefWidth="300" spacing="15" styleClass="right-panel">
+            <Label styleClass="header-title" text="Detalles del Vehículo" />
+            <Label text="Matrícula" />
+            <TextField fx:id="tfMatricula" />
+            <Label text="Marca" />
+            <TextField fx:id="tfMarca" />
+            <Label text="Modelo" />
+            <TextField fx:id="tfModelo" />
+            <Label text="Año" />
+            <TextField fx:id="tfAnio" />
+            <Label text="Precio Día" />
+            <TextField fx:id="tfPrecioDia" />
+            <Label text="Estado" />
+            <ComboBox fx:id="cbEstado" />
+
+            <Label text="Imagen del vehículo" />
+            <ImageView fx:id="imgVehiculo" fitHeight="150" fitWidth="200" preserveRatio="true" style="-fx-border-color: #ccc; -fx-border-width: 1;" />
+            <Button fx:id="btnSeleccionarImagen" styleClass="main-button" text="Seleccionar Imagen" />
+            <VBox spacing="10" style="-fx-padding: 10 0;">
+                <Button fx:id="btnAgregar" maxWidth="Infinity" styleClass="main-button action-button" text="Agregar" />
+                <Button fx:id="btnActualizar" maxWidth="Infinity" styleClass="main-button" text="Actualizar" />
+                <Button fx:id="btnEliminar" maxWidth="Infinity" styleClass="main-button danger-button" text="Eliminar" />
+            </VBox>
+
+            <VBox spacing="10" style="-fx-padding: 10 0;">
+                <Label style="-fx-font-size: 16px;" styleClass="header-title" text="Mantenimientos" />
+                <HBox spacing="10">
+                    <Button fx:id="btnAgregarMantenimiento" maxWidth="Infinity" styleClass="main-button" text="Agregar" HBox.hgrow="ALWAYS" />
+                    <Button fx:id="btnVerMantenimientos" maxWidth="Infinity" styleClass="main-button" text="Ver" HBox.hgrow="ALWAYS" />
+                </HBox>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+                <Button fx:id="btnVolver" maxWidth="Infinity" onAction="#volverAPrincipal" styleClass="main-button" text="Volver" />
+            </VBox>
+        </ScrollPane>
+    </right>
+
+    <!-- Pie de página -->
+    <bottom>
+        <HBox alignment="CENTER">
+            <Label text="2025 Rent-A-Car" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

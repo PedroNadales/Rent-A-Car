@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="650.0" prefWidth="800.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pedro.rentacar.controller.MainController">
+
+    <!-- Barra superior con título -->
+    <top>
+        <HBox spacing="10" styleClass="header-bar">
+            <Label styleClass="header-title" text="Rent-A-Car" />
+        </HBox>
+    </top>
+
+    <!-- Centro: botones principales con fondo -->
+    <center>
+        <StackPane style="-fx-background-color: transparent;">
+            <!-- Imagen de fondo -->
+            <ImageView fitHeight="500" fitWidth="500" opacity="0.15" preserveRatio="true">
+                <image>
+                    <Image url="@../cardview.png" />
+                </image>
+            </ImageView>
+
+            <!-- Contenedor de botones -->
+            <VBox alignment="CENTER" spacing="25" styleClass="button-container">
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../icon.png" />
+                </image>
+            </ImageView>
+                <Button fx:id="btnClientes" prefHeight="45" prefWidth="280" styleClass="main-button" text="Gestionar Clientes" />
+                <Button fx:id="btnVehiculos" prefHeight="45" prefWidth="280" styleClass="main-button" text="Gestionar Vehículos" />
+                <Button fx:id="btnReservas" prefHeight="45" prefWidth="280" styleClass="main-button" text="Gestionar Reservas" />
+                <Button fx:id="btnSalir" prefHeight="45" prefWidth="280" styleClass="exit-button" text="Cerrar Aplicación" />
+            </VBox>
+        </StackPane>
+    </center>
+
+    <!-- Pie de página -->
+    <bottom>
+        <HBox alignment="CENTER">
+            <Label text="2025 Rent-A-Car" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

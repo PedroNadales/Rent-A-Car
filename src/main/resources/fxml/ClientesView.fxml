@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.pedro.rentacar.controller.ClientesController"
+            stylesheets="@../css/styles.css">
+
+    <!-- Barra superior -->
+    <top>
+        <HBox spacing="10" styleClass="header-bar">
+            <Label styleClass="header-title" text="Gestión de Clientes" />
+        </HBox>
+    </top>
+
+    <!-- Centro: tabla de clientes -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label styleClass="header-title" text="Listado de Clientes" />
+                <TextField fx:id="tfBuscar" promptText="Buscar cliente..." styleClass="search-field" />
+                <Button text="Buscar" onAction="#buscarClientes" styleClass="btn" />
+                <Button text="Mostrar Todos" onAction="#mostrarTodosClientes" styleClass="btn" />
+            </HBox>
+            <TableView fx:id="tablaClientes" styleClass="main-table" maxWidth="-Infinity" prefHeight="400">
+                <columns>
+                    <TableColumn fx:id="colId" prefWidth="50" text="ID" />
+                    <TableColumn fx:id="colNombre" prefWidth="150" text="Nombre" />
+                    <TableColumn fx:id="colDni" prefWidth="100" text="DNI" />
+                    <TableColumn fx:id="colTelefono" prefWidth="120" text="Teléfono" />
+                    <TableColumn fx:id="colEmail" prefWidth="200" text="Email" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- Lado derecho: formulario y botones -->
+    <right>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" vbarPolicy="AS_NEEDED">
+            <VBox prefWidth="300" spacing="15" styleClass="right-panel">
+                <Label styleClass="header-title" text="Datos del Cliente" />
+                
+                <Label text="Nombre" />
+                <TextField fx:id="tfNombre" />
+                
+                <Label text="DNI" />
+                <TextField fx:id="tfDni" />
+                
+                <Label text="Teléfono" />
+                <TextField fx:id="tfTelefono" />
+                
+                <Label text="Email" />
+                <TextField fx:id="tfEmail" />
+                
+                <!-- Botones de acción -->
+                <VBox spacing="10" style="-fx-padding: 10 0;">
+                    <Button fx:id="btnAgregar" maxWidth="Infinity" styleClass="main-button action-button" text="Agregar Cliente" />
+                    <Button fx:id="btnActualizar" maxWidth="Infinity" styleClass="main-button" text="Actualizar Cliente" />
+                    <Button fx:id="btnEliminar" maxWidth="Infinity" styleClass="main-button danger-button" text="Eliminar Cliente" />
+                </VBox>
+                
+                <Region VBox.vgrow="ALWAYS" />
+                
+                <Button fx:id="btnVolver" maxWidth="Infinity" onAction="#volverAPrincipal" styleClass="main-button" text="Volver" />
+            </VBox>
+        </ScrollPane>
+    </right>
+
+    <!-- Pie de página -->
+    <bottom>
+        <HBox alignment="CENTER">
+            <Label text="2025 Rent-A-Car" />
+        </HBox>
+    </bottom>
+
+</BorderPane>
