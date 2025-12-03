@@ -113,17 +113,19 @@ public class VehiculoDAO {
     public List<Vehiculo> buscarPorTexto(String texto) throws SQLException {
         List<Vehiculo> resultados = new ArrayList<>();
         String sql = "SELECT * FROM vehiculo WHERE LOWER(matricula) LIKE ? OR LOWER(marca) LIKE ? OR " +
-                    "LOWER(modelo) LIKE ? OR CAST(anio AS TEXT) LIKE ?";
+                    "LOWER(modelo) LIKE ? OR anio LIKE ?";
         
         try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             
             String busqueda = "%" + texto.toLowerCase() + "%";
+            String busquedaAnio = "%" + texto + "%";
             
             // Establecer los parámetros de búsqueda
-            for (int i = 1; i <= 4; i++) {
-                ps.setString(i, busqueda);
-            }
+            ps.setString(1, busqueda);
+            ps.setString(2, busqueda);
+            ps.setString(3, busqueda);
+            ps.setString(4, busquedaAnio);
             
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {

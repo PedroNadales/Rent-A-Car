@@ -62,9 +62,29 @@ public class ClientesController {
 
         cargarClientes();
 
+        // Configurar el listener para la selección de clientes
+        tablaClientes.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                mostrarClienteSeleccionado(newSelection);
+            } else {
+                limpiarCampos();
+            }
+        });
+
         btnAgregar.setOnAction(e -> agregarCliente());
         btnActualizar.setOnAction(e -> actualizarCliente());
         btnEliminar.setOnAction(e -> eliminarCliente());
+        
+        // Deshabilitar botones de actualizar y eliminar hasta que se seleccione un cliente
+        btnActualizar.setDisable(true);
+        btnEliminar.setDisable(true);
+        
+        // Habilitar/deshabilitar botones según la selección
+        tablaClientes.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            boolean seleccionado = newSelection != null;
+            btnActualizar.setDisable(!seleccionado);
+            btnEliminar.setDisable(!seleccionado);
+        });
     }
 
     private Connection conn; // conexión persistente para toda la ventana
@@ -154,6 +174,26 @@ public class ClientesController {
     }
 
 
+    /**
+     * Muestra los datos del cliente seleccionado en el formulario
+     * @param cliente El cliente seleccionado
+     */
+    private void mostrarClienteSeleccionado(Cliente cliente) {
+        if (cliente == null) {
+            limpiarCampos();
+            return;
+        }
+        
+        // Actualizar campos del formulario con los datos del cliente
+        tfNombre.setText(cliente.getNombre() != null ? cliente.getNombre() : "");
+        tfDni.setText(cliente.getDni() != null ? cliente.getDni() : "");
+        tfTelefono.setText(cliente.getTelefono() != null ? cliente.getTelefono() : "");
+        tfEmail.setText(cliente.getEmail() != null ? cliente.getEmail() : "");
+    }
+    
+    /**
+     * Limpia todos los campos del formulario
+     */
     private void limpiarCampos() {
         tfNombre.clear();
         tfDni.clear();
